@@ -5,6 +5,7 @@ const CarExceptions = {
     ColorRequired: "Please enter car color",
     HoursRequired: "Please enter hours parked",
     HoursNotAnInteger: "Hours must be an integer",
+    CarNotParked: "Sorry, that car is not parked here"
 }
 
 Object.freeze(CarExceptions)

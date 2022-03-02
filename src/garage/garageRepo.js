@@ -26,7 +26,7 @@ exports.findAllCars = async function () {
     return cars
 }
 
-exports.getGarageCapacity= async function () {
+exports.getGarageCapacity = async function () {
     const carCount = await Car.count()
     return carCount
 }

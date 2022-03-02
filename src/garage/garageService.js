@@ -34,7 +34,7 @@ exports.findCarByLicensePlate = async function (licensePlate) {
     if (!licensePlate) {
         throw Error(GarageExceptions.LicensePlateRequired)
     }
-    const car = garageRepo.findcarByLicensePlate(licensePlate)
+    const car = await garageRepo.findcarByLicensePlate(licensePlate)
     return car
 }
 

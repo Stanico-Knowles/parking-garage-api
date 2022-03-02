@@ -6,16 +6,16 @@ const garageService = require('./garageService')
 router.post('/cars', async (req, res) => {
     try {
         const hours = req.body.hours
-        const color = req.body.color
+        const color = req.body.color.toLowerCase().trim()
         const clean = req.body.clean
         const car = {
-            licensePlate: req.body.licensePlate,
+            licensePlate: req.body.licensePlate.toLowerCase().trim(),
             color: color,
             clean: clean,
             hours: hours, 
         }
         const newCar = await garageService.addCar(car)
-        return res.status(200).json(newCar)
+        return res.status(200).send({ message: "Car Added"})
     } 
     catch(err) { 
         res.status(400).json({ error: err.message })
