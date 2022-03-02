@@ -29,7 +29,7 @@ router.get('/', async (req, res) => {
         if (carCount < 1) {
             return res.send(`Hello, there are no cars parked currently.`)
         } else {
-            return res.send(`Hello, there ${carCount} cars in the garage.`)
+            return res.send(`Hello, there are ${carCount} cars in the garage.`)
         }
     }
     catch(err) {
