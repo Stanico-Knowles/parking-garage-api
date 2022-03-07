@@ -63,17 +63,18 @@ exports.deleteCar = async function (licensePlate) {
 }
 
 exports.calculatePrice = async function (hours, clean, color) {
+    const rate = 7
     if (Object.values(likedColors).includes(color)) {
-        if (clean == true) {
+        if (clean) {
             return 0
         } else {
-            return 3.5 * hours
+            return (rate * .5) * hours
         }
     } else {
-        if (clean == true) {
-            return 7 * hours
+        if (clean) {
+            return rate * hours
         } else {
-            return 14 * hours
+            return (rate * 2) * hours
         }
     }
 }
