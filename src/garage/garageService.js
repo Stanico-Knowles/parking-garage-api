@@ -1,5 +1,6 @@
 const garageRepo = require('./garageRepo')
 const GarageExceptions = require('./GarageEnums/garageExceptions')
+const likedColors = require('./GarageEnums/likedColors')
 
 exports.addCar = async function (car) {
     await this.validateNewCar(car)
@@ -29,12 +30,12 @@ exports.validateNewCar = async function (car) {
         throw Error(GarageExceptions.HoursNotAnInteger)
     }
 }
- 
+
 exports.findCarByLicensePlate = async function (licensePlate) {
     if (!licensePlate) {
         throw Error(GarageExceptions.LicensePlateRequired)
     }
-    const car = await garageRepo.findcarByLicensePlate(licensePlate)
+    const car = await garageRepo.findCarByLicensePlate(licensePlate)
     return car
 }
 
@@ -48,6 +49,12 @@ exports.getGarageCapacity = async function () {
     return carCount
 }
 
+exports.updateCar = async function (updatedInfo, licensePlate) {
+    const price =  await this.updatePrice(updatedInfo.color, updatedInfo.clean, updatedInfo.hours, licensePlate)
+    Object.assign(updatedInfo, {price:price})
+    return garageRepo.updateCar(updatedInfo, licensePlate)
+}
+
 exports.deleteCar = async function (licensePlate) {
     if (!licensePlate) {
         throw Error(GarageExceptions.LicensePlateRequired)
@@ -56,22 +63,39 @@ exports.deleteCar = async function (licensePlate) {
 }
 
 exports.calculatePrice = async function (hours, clean, color) {
-    likedColors = {
-        red: 'red',
-        green: 'green',
-        black: 'black'
-    }
     if (Object.values(likedColors).includes(color)) {
-        if (clean = true) {
+        if (clean == true) {
             return 0
         } else {
             return 3.5 * hours
         }
     } else {
-        if (clean = true) {
+        if (clean == true) {
             return 7 * hours
         } else {
             return 14 * hours
         }
     }
+}
+
+exports.updatePrice = async function (color, clean, hours, licensePlate) {
+    const car = {}
+    const currentCar = await this.findCarByLicensePlate(licensePlate)
+    if (color === null || color === undefined) {
+        Object.assign(car, {color:currentCar.color})
+    } else {
+        Object.assign(car, {color:color})
+    }
+    if (clean === null || clean === undefined) {
+        Object.assign(car, {clean:currentCar.clean})
+    } else {
+        Object.assign(car, {clean:clean})
+    }
+    if (hours === null || hours === undefined) {
+        Object.assign(car, {hours:currentCar.hours})
+    } else {
+        Object.assign(car, {hours:hours})
+    }
+    const price = await this.calculatePrice(car.hours, car.clean, car.color)
+    return price
 }

@@ -1,11 +1,9 @@
 const express = require('express')
-const router = express.Router()
 const app = express()
 const cors = require('cors')
 const ErrorHandler = require("./frameworks/errorHandler/errorHandler")
 const port = 3000
 const db = require('./models/index')
-const sqlite3 = require('sqlite3')
 
 app.use(express.json());
 app.use(cors());

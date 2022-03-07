@@ -12,9 +12,9 @@ exports.addCar = async function (car, price) {
     })
 }
 
-exports.findcarByLicensePlate = async function (licensePlate) {
+exports.findCarByLicensePlate = async function (licensePlate) {
     const car = await Car.findOne(
-        {
+        {    
             where: {licensePlate: licensePlate}
         }
     )
@@ -29,6 +29,13 @@ exports.findAllCars = async function () {
 exports.getGarageCapacity = async function () {
     const carCount = await Car.count()
     return carCount
+}
+
+exports.updateCar = async function (updatedInfo, licensePlate) {
+    Car.update(
+        updatedInfo,
+        { where: { licensePlate: licensePlate } }
+    )
 }
 
 exports.deleteCar = async function (licensePlate) {

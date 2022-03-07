@@ -14,7 +14,7 @@ router.post('/cars', async (req, res) => {
             clean: clean,
             hours: hours, 
         }
-        const newCar = await garageService.addCar(car)
+        await garageService.addCar(car)
         return res.status(200).send({ message: "Car Added"})
     } 
     catch(err) { 
@@ -52,6 +52,31 @@ router.get('/cars', async (req, res) => {
     try {
         const cars = await garageService.findAllCars()
         return res.status(200).json(cars)
+    }
+    catch(err) {
+        res.status(400).json({ error: err.message })
+    }
+})
+
+router.put('/car/:licensePlate', async (req, res) => {
+    try {
+        const hours = req.body.hours
+        const color = req.body.color
+        const clean = req.body.clean
+        const licensePlate = req.params.licensePlate
+        const updatedInfo = {}
+
+        if (hours) {
+            Object.assign(updatedInfo, {hours:hours})
+        }
+        if (color) {
+            Object.assign(updatedInfo, {color:color})
+        }
+        if (clean != null || clean != undefined) {
+            Object.assign(updatedInfo, {clean:clean})
+        }
+        await garageService.updateCar(updatedInfo, licensePlate)
+        return res.status(200).json({ message: "Successfully Updated" })
     }
     catch(err) {
         res.status(400).json({ error: err.message })
