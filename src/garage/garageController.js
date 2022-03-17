@@ -5,20 +5,17 @@ const garageService = require('./garageService')
 
 router.post('/cars', async (req, res) => {
     try {
-        const hours = req.body.hours
-        const color = req.body.color.toLowerCase().trim()
-        const clean = req.body.clean
         const car = {
             licensePlate: req.body.licensePlate.toLowerCase().trim(),
-            color: color,
-            clean: clean,
-            hours: hours, 
+            color: req.body.color.toLowerCase().trim(),
+            clean: req.body.clean,
+            hours: req.body.hours, 
         }
-        await garageService.addCar(car)
-        return res.status(200).send({ message: "Car Added"})
+        const newCar = await garageService.addCar(car)
+        return res.status(201).json(newCar)
     } 
     catch(err) { 
-        res.status(400).json({ error: err.message })
+        res.status(500).json({ error: err.message })
     }
 })
 
@@ -33,7 +30,7 @@ router.get('/', async (req, res) => {
         }
     }
     catch(err) {
-        res.status(400).json({ error: err.message })
+        res.status(500).json({ error: err.message })
     }
 })
 
@@ -44,7 +41,7 @@ router.get('/car', async (req, res) => {
         return res.status(200).json(car)
     }
     catch(err) {
-        res.status(400).json({ error: err.message })
+        res.status(500).json({ error: err.message })
     }
 })
 
@@ -54,7 +51,7 @@ router.get('/cars', async (req, res) => {
         return res.status(200).json(cars)
     }
     catch(err) {
-        res.status(400).json({ error: err.message })
+        res.status(500).json({ error: err.message })
     }
 })
 
@@ -79,18 +76,18 @@ router.put('/car/:licensePlate', async (req, res) => {
         return res.status(200).json({ message: "Successfully Updated" })
     }
     catch(err) {
-        res.status(400).json({ error: err.message })
+        res.status(500).json({ error: err.message })
     }
 })
 
-router.delete('/cars/:licensePlate', async (req, res) => {
+router.delete('/car/:licensePlate', async (req, res) => {
     try {
         const licensePlate = req.params.licensePlate
         await garageService.deleteCar(licensePlate)
         return res.status(200).json({ message: "car deleted"})
     }
     catch(err) {
-        res.status(400).json({ error: err.message })
+        res.status(500).json({ error: err.message })
     }
 })
 

@@ -5,8 +5,7 @@ const likedColors = require('./GarageEnums/likedColors')
 exports.addCar = async function (car) {
     await this.validateNewCar(car)
     const price = await this.calculatePrice(car.hours, car.clean, car.color)
-    const newCar = garageRepo.addCar(car, price)
-    return newCar
+    return garageRepo.addCar(car, price)
 }
 
 exports.validateNewCar = async function (car) {

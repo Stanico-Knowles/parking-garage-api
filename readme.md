@@ -10,7 +10,7 @@
 
 <ol>
     <li>Accept the license plate number, which will serve as the primary key, car color, hours parked, and whether or not it is dirty.</li>
-    <li>Retrieve the same info that is accepted plus the price</li>
+    <li>Return the same info that is accepted plus the price</li>
     <li>Delete by Primary Key</li>
     <li>Update the accepted info</li>
 </ol>
@@ -34,3 +34,7 @@
 ``` npm install ```
 
 ``` npm run dev ```
+
+<p>You can test this API with postman or create your frontend.</p>
+
+[Postman Documentation](https://documenter.getpostman.com/view/15290147/UVsMw6Tj)

@@ -3,7 +3,7 @@ const { sequelize } = require("../models")
 const Car = require('../models/garageModel')(sequelize, DataTypes)
 
 exports.addCar = async function (car, price) {
-    Car.create({
+    return Car.create({
         licensePlate: car.licensePlate,
         color: car.color,
         clean: car.clean,
