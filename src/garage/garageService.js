@@ -9,10 +9,6 @@ exports.addCar = async function (car) {
 }
 
 exports.validateNewCar = async function (car) {
-    const carExists = await this.findCarByLicensePlate(car.licensePlate)
-    if (carExists) {
-        throw Error(GarageExceptions.LicencePlateExists)
-    }
     if (!car.licensePlate) {
         throw Error(GarageExceptions.LicensePlateRequired)
     }
@@ -27,6 +23,10 @@ exports.validateNewCar = async function (car) {
     }
     if (!Number.isInteger(car.hours)) {
         throw Error(GarageExceptions.HoursNotAnInteger)
+    }
+    const carExists = await this.findCarByLicensePlate(car.licensePlate)
+    if (carExists) {
+        throw Error(GarageExceptions.LicencePlateExists)
     }
 }
 
