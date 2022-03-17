@@ -26,3 +26,11 @@
 </ul>
 
 <p>I used a <a href="https://tom-collings.medium.com/controller-service-repository-16e29a4684e5">controller -> service -> repository pattern</a> for this project. It is a great pattern for developers who follow <a href='https://dev.to/xedinunknown/separation-of-concerns-3e7d#:~:text=SOLID%20Principles%20In%20practice%2C%20Separation%20of%20Concerns%20would,classes%2C%20and%20the%20same%20is%20applied%20to%20functions.'>separation of concerns and SOLID design principles.</a></p>
+
+### Want To Try It Out?
+
+``` git clone https://github.com/Stanico-Knowles/parking-garage-api.git ```
+
+``` npm install ```
+
+``` npm run dev ```
