@@ -1,6 +1,6 @@
 # Parking Garage API
 
-<p>This is a cool project my senior gave me when I began my current role in August 2021. It handles CRUD operations using a REST API with NodeJs, Express, and SQLite. The original project was done with Python Flask, so I figured I'd redo it eventually using JavaScript.</p>
+<p>This is a cool project my senior gave me when I began my current role in August 2021. It handles CRUD operations using a REST API with NodeJs, Express, and SQLite. <a href='https://github.com/Stanico-Knowles/parked-cars-api'>The original project was done with Python Flask</a>, so I figured I'd redo it eventually using JavaScript.</p>
 
 ## Requirements
 
