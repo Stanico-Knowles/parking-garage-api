@@ -29,7 +29,7 @@
 
 ### Want To Try It Out?
 
-<p>No need to install any databases or community packages. Everything required is inside the project. Simply run the following commands.</p>
+<p>No need to install any databases or community server packages. Everything required is inside the project. Simply open your code editor and terminal, then run the following commands.</p>
 
 ``` git clone https://github.com/Stanico-Knowles/parking-garage-api.git ```
 
