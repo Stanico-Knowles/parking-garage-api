@@ -1,6 +1,7 @@
 const garageRepo = require('./garageRepo')
 const GarageExceptions = require('./GarageEnums/garageExceptions')
 const likedColors = require('./GarageEnums/likedColors')
+const HTTPError = require('../frameworks/errorHandler/APIError/HTTPError');
 
 exports.addCar = async function (car) {
     await this.validateNewCar(car)
@@ -10,29 +11,29 @@ exports.addCar = async function (car) {
 
 exports.validateNewCar = async function (car) {
     if (!car.licensePlate) {
-        throw Error(GarageExceptions.LicensePlateRequired)
+        throw HTTPError.badRequest(GarageExceptions.LicensePlateRequired)
     }
     if (car.clean == null) {
-        throw Error(GarageExceptions.CleanRequired)
+        throw HTTPError.badRequest(GarageExceptions.CleanRequired)
     }
     if (!car.color) {
-        throw Error(GarageExceptions.ColorRequired)
+        throw HTTPError.badRequest(GarageExceptions.ColorRequired)
     }
     if (!car.hours) {
-        throw Error(GarageExceptions.HoursRequired)
+        throw HTTPError.badRequest(GarageExceptions.HoursRequired)
     }
     if (!Number.isInteger(car.hours)) {
-        throw Error(GarageExceptions.HoursNotAnInteger)
+        throw HTTPError.badRequest(GarageExceptions.HoursNotAnInteger)
     }
     const carExists = await this.findCarByLicensePlate(car.licensePlate)
     if (carExists) {
-        throw Error(GarageExceptions.LicencePlateExists)
+        throw HTTPError.badRequest(GarageExceptions.LicencePlateExists)
     }
 }
 
 exports.findCarByLicensePlate = async function (licensePlate) {
     if (!licensePlate) {
-        throw Error(GarageExceptions.LicensePlateRequired)
+        throw HTTPError.badRequest(GarageExceptions.LicensePlateRequired)
     }
     const car = await garageRepo.findCarByLicensePlate(licensePlate)
     return car
@@ -56,7 +57,7 @@ exports.updateCar = async function (updatedInfo, licensePlate) {
 
 exports.deleteCar = async function (licensePlate) {
     if (!licensePlate) {
-        throw Error(GarageExceptions.LicensePlateRequired)
+        throw HTTPError.badRequest(GarageExceptions.LicensePlateRequired)
     }
     garageRepo.deleteCar(licensePlate)
 }
