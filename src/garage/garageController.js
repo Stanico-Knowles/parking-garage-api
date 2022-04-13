@@ -6,8 +6,8 @@ const garageService = require('./garageService')
 router.post('/cars', async (req, res) => {
     try {
         const car = {
-            licensePlate: req.body.licensePlate.toLowerCase().trim(),
-            color: req.body.color.toLowerCase().trim(),
+            licensePlate: req.body.licensePlate,
+            color: req.body.color,
             clean: req.body.clean,
             hours: req.body.hours, 
         }
@@ -15,7 +15,7 @@ router.post('/cars', async (req, res) => {
         return res.status(201).json(newCar)
     } 
     catch(err) { 
-        res.status(500).json({ error: err.message })
+        res.status(err.code).json({ error: err.message })
     }
 })
 
@@ -30,7 +30,7 @@ router.get('/', async (req, res) => {
         }
     }
     catch(err) {
-        res.status(500).json({ error: err.message })
+        res.status(err.code).json({ error: err.message })
     }
 })
 
@@ -41,7 +41,7 @@ router.get('/car', async (req, res) => {
         return res.status(200).json(car)
     }
     catch(err) {
-        res.status(500).json({ error: err.message })
+        res.status(err.code).json({ error: err.message })
     }
 })
 
@@ -51,7 +51,7 @@ router.get('/cars', async (req, res) => {
         return res.status(200).json(cars)
     }
     catch(err) {
-        res.status(500).json({ error: err.message })
+        res.status(err.code).json({ error: err.message })
     }
 })
 
@@ -76,7 +76,7 @@ router.put('/car/:licensePlate', async (req, res) => {
         return res.status(200).json({ message: "Successfully Updated" })
     }
     catch(err) {
-        res.status(500).json({ error: err.message })
+        res.status(err.code).json({ error: err.message })
     }
 })
 
@@ -87,7 +87,7 @@ router.delete('/car/:licensePlate', async (req, res) => {
         return res.status(200).json({ message: "car deleted"})
     }
     catch(err) {
-        res.status(500).json({ error: err.message })
+        res.status(err.code).json({ error: err.message })
     }
 })
 
