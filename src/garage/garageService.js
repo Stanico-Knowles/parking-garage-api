@@ -35,18 +35,15 @@ exports.findCarByLicensePlate = async function (licensePlate) {
     if (!licensePlate) {
         throw HTTPError.badRequest(GarageExceptions.LicensePlateRequired)
     }
-    const car = await garageRepo.findCarByLicensePlate(licensePlate)
-    return car
+    return await garageRepo.findCarByLicensePlate(licensePlate)
 }
 
 exports.findAllCars = async function () {
-    const cars = garageRepo.findAllCars()
-    return cars
+    return garageRepo.findAllCars()
 }
 
 exports.getGarageCapacity = async function () {
-    const carCount = garageRepo.getGarageCapacity()
-    return carCount
+    return garageRepo.getGarageCapacity()
 }
 
 exports.updateCar = async function (updatedInfo, licensePlate) {
@@ -97,6 +94,5 @@ exports.updatePrice = async function (color, clean, hours, licensePlate) {
     } else {
         Object.assign(car, {hours:hours})
     }
-    const price = await this.calculatePrice(car.hours, car.clean, car.color)
-    return price
+    return await this.calculatePrice(car.hours, car.clean, car.color)
 }

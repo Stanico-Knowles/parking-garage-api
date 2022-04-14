@@ -8,7 +8,7 @@ function APIErrorHandler(err, req, res, next) {
     return;
   }
 
-  res.status(500).json('something went wrong');
+  res.status(500).json( {error: 'Something Went Wrong'} );
 }
 
 module.exports = APIErrorHandler;

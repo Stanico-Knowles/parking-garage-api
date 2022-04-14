@@ -1,4 +1,5 @@
 const express = require('express')
+const APIResponse = require('./GarageEnums/response')
 const router = express.Router()
 const garageService = require('./garageService')
 
@@ -15,7 +16,7 @@ router.post('/cars', async (req, res) => {
         return res.status(201).json(newCar)
     } 
     catch(err) { 
-        res.status(err.code).json({ error: err.message })
+        res.status(err.code || 500).json({ error: err.message })
     }
 })
 
@@ -41,7 +42,7 @@ router.get('/car', async (req, res) => {
         return res.status(200).json(car)
     }
     catch(err) {
-        res.status(err.code).json({ error: err.message })
+        res.status(err.code || 500).json({ error: err.message })
     }
 })
 
@@ -51,7 +52,7 @@ router.get('/cars', async (req, res) => {
         return res.status(200).json(cars)
     }
     catch(err) {
-        res.status(err.code).json({ error: err.message })
+        res.status(err.code || 500).json({ error: err.message })
     }
 })
 
@@ -73,10 +74,10 @@ router.put('/car/:licensePlate', async (req, res) => {
             Object.assign(updatedInfo, {clean:clean})
         }
         await garageService.updateCar(updatedInfo, licensePlate)
-        return res.status(200).json({ message: "Successfully Updated" })
+        return res.status(200).json({ message: APIResponse.SuccessfullyUpdated })
     }
     catch(err) {
-        res.status(err.code).json({ error: err.message })
+        res.status(err.code || 500).json({ error: err.message })
     }
 })
 
@@ -84,10 +85,10 @@ router.delete('/car/:licensePlate', async (req, res) => {
     try {
         const licensePlate = req.params.licensePlate
         await garageService.deleteCar(licensePlate)
-        return res.status(200).json({ message: "car deleted"})
+        return res.status(200).json({ message: APIResponse.SuccessfullyDeleted})
     }
     catch(err) {
-        res.status(err.code).json({ error: err.message })
+        res.status(err.code || 500).json({ error: err.message })
     }
 })
 

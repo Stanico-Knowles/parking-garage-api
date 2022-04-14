@@ -4,8 +4,8 @@ const Car = require('../models/garageModel')(sequelize, DataTypes)
 
 exports.addCar = async function (car, price) {
     return Car.create({
-        licensePlate: car.licensePlate,
-        color: car.color,
+        licensePlate: car.licensePlate.toLowerCase(),
+        color: car.color.toLowerCase(),
         clean: car.clean,
         hours: car.hours,
         price: price
