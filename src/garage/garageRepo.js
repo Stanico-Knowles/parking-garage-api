@@ -2,7 +2,7 @@ const { DataTypes } = require("sequelize")
 const { sequelize } = require("../models")
 const Car = require('../models/garageModel')(sequelize, DataTypes)
 
-exports.addCar = async function (car, price) {
+exports.addCar = function (car, price) {
     return Car.create({
         licensePlate: car.licensePlate.toLowerCase(),
         color: car.color.toLowerCase(),
@@ -12,8 +12,8 @@ exports.addCar = async function (car, price) {
     })
 }
 
-exports.findCarByLicensePlate = async function (licensePlate) {
-    const car = await Car.findOne(
+exports.findCarByLicensePlate = function (licensePlate) {
+    const car = Car.findOne(
         {    
             where: {licensePlate: licensePlate}
         }
@@ -21,24 +21,24 @@ exports.findCarByLicensePlate = async function (licensePlate) {
     return car
 }
 
-exports.findAllCars = async function () {
-    const cars = await Car.findAll()
+exports.findAllCars = function () {
+    const cars = Car.findAll()
     return cars
 }
 
-exports.getGarageCapacity = async function () {
-    const carCount = await Car.count()
+exports.getGarageCapacity = function () {
+    const carCount = Car.count()
     return carCount
 }
 
-exports.updateCar = async function (updatedInfo, licensePlate) {
+exports.updateCar = function (updatedInfo, licensePlate) {
     Car.update(
         updatedInfo,
         { where: { licensePlate: licensePlate } }
     )
 }
 
-exports.deleteCar = async function (licensePlate) {
+exports.deleteCar = function (licensePlate) {
     Car.destroy(
         { where: { licensePlate: licensePlate } }
     )
