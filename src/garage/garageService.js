@@ -38,11 +38,11 @@ exports.findCarByLicensePlate = async function (licensePlate) {
     return await garageRepo.findCarByLicensePlate(licensePlate)
 }
 
-exports.findAllCars = async function () {
+exports.findAllCars = function () {
     return garageRepo.findAllCars()
 }
 
-exports.getGarageCapacity = async function () {
+exports.getGarageCapacity = function () {
     return garageRepo.getGarageCapacity()
 }
 
@@ -52,14 +52,14 @@ exports.updateCar = async function (updatedInfo, licensePlate) {
     return garageRepo.updateCar(updatedInfo, licensePlate)
 }
 
-exports.deleteCar = async function (licensePlate) {
+exports.deleteCar = function (licensePlate) {
     if (!licensePlate) {
         throw HTTPError.badRequest(GarageExceptions.LicensePlateRequired)
     }
     garageRepo.deleteCar(licensePlate)
 }
 
-exports.calculatePrice = async function (hours, clean, color) {
+exports.calculatePrice = function (hours, clean, color) {
     const rate = 7
     if (Object.values(likedColors).includes(color)) {
         if (clean) {
