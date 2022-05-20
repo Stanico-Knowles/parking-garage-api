@@ -6,6 +6,8 @@
 
 <p>I am developing an API for a biased parking garage owner. If he likes a car, they get free parking. He likes all red, green, and black cars, but he hates everything else. Forgot to mention, he hates dirty cars, so if it's one of his preferred colors, but it's dirty, then you get half off but not free. If he hates the car (not a preferred color), it's full price. If he hates the car and it's dirty, double price. Base parking charge is $7.00.</p>
 
+<p>The project is a simple, fun, hands-on intoduction to REST API's with node and express, and implementing business logic.</p>
+
 ### The API Will:
 
 <ol>

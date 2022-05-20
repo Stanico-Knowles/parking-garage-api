@@ -4,6 +4,4 @@ likedColors = {
     black: 'black'
 }
 
-Object.freeze(likedColors)
-
 module.exports = likedColors

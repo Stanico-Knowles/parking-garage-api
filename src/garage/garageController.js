@@ -38,7 +38,7 @@ router.get('/', async (req, res) => {
 router.get('/car', async (req, res) => {
     try {
         const licensePlate = req.query.licensePlate
-        const car = await garageService.findCarByLicensePlate(licensePlate)
+        const car = await garageService.findCar(licensePlate)
         return res.status(200).json(car)
     }
     catch(err) {

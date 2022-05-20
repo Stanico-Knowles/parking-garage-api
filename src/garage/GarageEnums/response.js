@@ -3,6 +3,4 @@ const APIResponse = {
     SuccessfullyDeleted: 'Successfully Deleted'
 }
 
-Object.freeze(APIResponse)
-
 module.exports = APIResponse
